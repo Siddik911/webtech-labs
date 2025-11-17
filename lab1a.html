@@ -1,0 +1,164 @@
+<html>
+
+<head>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: lightgrey;
+        }
+
+        body {
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        .right-alignment {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        #header1 {
+            font-size: small;
+        }
+
+        #header2 {
+            font-weight: bold;
+        }
+
+        .sm {
+            font-size: 10px;
+        }
+
+        .amount-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .amount-container label {
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .amount-container input {
+            width: 100px;
+        }
+    </style>
+
+    <script>
+        console.log("Hello world from js console");
+        var abc = "Education";
+        console.log("The value of abc is ..", abc);
+        var abc;
+        console.log("The value of abc is still..", abc);
+
+        var first_name = "";
+        function validateForm() {
+            first_name = document.getElementById("first_name").value;
+            console.log("first name is...", first_name);
+            var line = "Hello " + first_name;
+            alert(line);
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <p id="header1"><span style="color:red">*</span> -Denotes Required Information</p>
+        <p> <span id="header2">> 1 Donation</span> <span> > 2 Confirmation</span> <span> > 3 Thank You</span></s></p>
+        <form action="" onsubmit="validateForm()" method="get">
+            <table>
+                <tr>
+                    <td class="right-alignment">First Name <span style="color:red">*</span></td>
+                    <td><input type="text" placeholder="Enter Your name" id="first_name" /></td>
+                </tr>
+                <tr>
+                    <td class="right-alignment" name="last_name">Last Name <span style="color:red">*</span></td>
+                    <td><input type="" placeholder="Enter Your name" /></td>
+                </tr>
+                <tr>
+                    <td class="right-alignment">Company <span style="color:red">*</span></td>
+                    <td><input type="" placeholder="Enter Company Name" /></td>
+                </tr>
+                <tr>
+                    <td class="right-alignment">Address 1 <span style="color:red">*</span></td>
+                    <td><input type="" placeholder="Enter Company Name" /></td>
+                </tr>
+                <tr>
+                    <td class="right-alignment">Address 2</td>
+                    <td><input type="" placeholder="Enter Company Name" /></td>
+                </tr>
+                <tr>
+                    <td class="right-alignment">City <span style="color:red">*</span></td>
+                    <td><input type="" placeholder="Enter Company Name" /></td>
+                </tr>
+                <tr>
+                    <td class="right-alignment">Gender</td>
+                    <td>
+                        <select>
+                            <option disabled selected>Select Your Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="right-alignment">Gender</td>
+                    <td>
+                        <input type="radio" name="gender" value="Male" />Male
+                        <input type="radio" name="gender" value="female" />Female
+                    </td>
+                </tr>
+                <tr>
+                    <td class="right-alignment">Completed Courses</td>
+                    <td>
+                        <input type="checkbox" /> IP
+                    </td>
+                </tr>
+                <tr>
+                    <td class="right-alignment"></td>
+                    <td>
+                        <input type="checkbox" /> OOP1
+                    </td>
+                </tr>
+                <tr>
+                    <td class="sm">
+                        (Check a buttom or type in your amount)
+                    </td>
+                    <td>
+                        <div class="amount-container">
+                            <label class="right-alignment">Other Amount $</label>
+                            <input type="text" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Submit</button>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+
+</body>
+
+</html>
