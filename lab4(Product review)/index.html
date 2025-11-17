@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Review System - Electronics & Gadgets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo">TechStore</h1>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Product Section -->
+        <section class="product-section">
+            <div class="product-display">
+                <img src="https://www.applegadgetsbd.com/_next/image?url=https%3A%2F%2Fadminapi.applegadgetsbd.com%2Fstorage%2Fmedia%2Flarge%2FJBL-Tune-720BT-Wireless-Over-Ear-Headphones-Black-3976.jpg&w=1920&q=100" alt="Premium Wireless Headphones" class="product-image">
+            </div>
+            <div class="product-details">
+                <h2 class="product-title">Premium Wireless Headphones</h2>
+                <div class="product-price">30,000.00</div>
+                <div class="product-description">
+                    <h3>Product Description</h3>
+                    <p>Experience superior sound quality with our Premium Wireless Headphones. Featuring active noise cancellation, 30-hour battery life, and comfortable over-ear design. Perfect for music lovers and professionals alike.</p>
+                    <ul class="features-list">
+                        <li>Active Noise Cancellation (ANC)</li>
+                        <li>30-hour battery life</li>
+                        <li>Bluetooth 5.0 connectivity</li>
+                        <li>Premium cushioned ear cups</li>
+                        <li>Built-in microphone for calls</li>
+                    </ul>
+                </div>
+                <button class="btn btn-primary">Add to Cart</button>
+            </div>
+        </section>
+
+        <!-- Review Statistics Section -->
+        <section class="review-statistics" id="reviewStatistics">
+            <h2>Customer Reviews</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalReviews">0</div>
+                    <div class="stat-label">Total Reviews</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="averageRating">0.0</div>
+                    <div class="stat-label">Average Rating</div>
+                    <div class="star-display" id="averageStars"></div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="recommendPercentage">0%</div>
+                    <div class="stat-label">Would Recommend</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Review Form Section -->
+        <section class="review-form-section">
+            <h2>Write a Review</h2>
+            <form id="reviewForm" class="review-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="customerName">Name <span class="required">*</span></label>
+                        <input type="text" id="customerName" name="customerName" class="form-control" required>
+                        <span class="error-message" id="nameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerEmail">Email (Optional)</label>
+                        <input type="email" id="customerEmail" name="customerEmail" class="form-control">
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="reviewTitle">Review Title <span class="required">*</span></label>
+                    <input type="text" id="reviewTitle" name="reviewTitle" class="form-control" required>
+                    <span class="error-message" id="titleError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="reviewDescription">Review Description <span class="required">*</span></label>
+                    <textarea id="reviewDescription" name="reviewDescription" class="form-control" rows="5" required></textarea>
+                    <div class="char-counter">
+                        <span id="charCount">0</span> / 1000 characters
+                    </div>
+                    <span class="error-message" id="descriptionError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Product Rating <span class="required">*</span></label>
+                    <div class="star-rating" id="starRating">
+                        <span class="star" data-rating="1">☆</span>
+                        <span class="star" data-rating="2">☆</span>
+                        <span class="star" data-rating="3">☆</span>
+                        <span class="star" data-rating="4">☆</span>
+                        <span class="star" data-rating="5">☆</span>
+                    </div>
+                    <span class="selected-rating" id="selectedRating">No rating selected</span>
+                    <span class="error-message" id="ratingError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Would you recommend this product?</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="recommend" value="yes">
+                            <span>Yes</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="recommend" value="no">
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-submit">Submit Review</button>
+            </form>
+        </section>
+
+        <!-- Reviews Display Section -->
+        <section class="reviews-display-section">
+            <div class="reviews-header">
+                <h2>Customer Reviews</h2>
+                <div class="sort-options">
+                    <label for="sortReviews">Sort by:</label>
+                    <select id="sortReviews" class="sort-select">
+                        <option value="newest">Newest First</option>
+                        <option value="highest">Highest Rated First</option>
+                    </select>
+                </div>
+            </div>
+            <div id="reviewsList" class="reviews-list">
+                <p class="no-reviews">No reviews yet. Be the first to review this product!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TechStore. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
