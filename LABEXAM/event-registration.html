@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Tech Connect - Event Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .radio-group {
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            margin-bottom: 10px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .analytics-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .analytics-btn:hover {
+            background-color: #218838;
+        }
+
+        .analytics-panel {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .analytics-panel h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .stat-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .stat-label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .stat-value {
+            color: #007bff;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .success-message {
+            display: none;
+            padding: 15px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Global Tech Connect</h1>
+        <p class="subtitle">Event Registration</p>
+
+        <div class="success-message" id="successMessage">
+            Registration successful! Thank you for registering.
+        </div>
+
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" maxlength="100">
+                <div class="error-message" id="nameError">Name must be between 6 and 100 characters.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Professional Email *</label>
+                <input type="email" id="email" name="email">
+                <div class="error-message" id="emailError">Please enter a valid professional email address.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="company">Company/Institution (Optional)</label>
+                <input type="text" id="company" name="company" maxlength="100">
+            </div>
+
+            <div class="form-group">
+                <label>Attendance Type *</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="virtual" name="attendanceType" value="Virtual">
+                        <label for="virtual" style="display: inline; font-weight: normal;">Virtual</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="inPerson" name="attendanceType" value="In-Person">
+                        <label for="inPerson" style="display: inline; font-weight: normal;">In-Person</label>
+                    </div>
+                </div>
+                <div class="error-message" id="attendanceError">Please select your attendance type.</div>
+            </div>
+
+            <button type="submit" class="submit-btn">Register Now</button>
+        </form>
+
+        <button class="analytics-btn" id="analyticsBtn" onclick="toggleAnalytics()">Show Event Analytics</button>
+
+        <div class="analytics-panel" id="analyticsPanel">
+            <h2>Event Analytics</h2>
+            <div class="stat-item">
+                <span class="stat-label">Total Number of Registrants:</span>
+                <span class="stat-value" id="totalRegistrants">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Virtual Attendance:</span>
+                <span class="stat-value" id="virtualCount">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">In-Person Attendance:</span>
+                <span class="stat-value" id="inPersonCount">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Array to store registrations
+        var registrations = [];
+
+        // Get form elements
+        var form = document.getElementById('registrationForm');
+        var fullNameInput = document.getElementById('fullName');
+        var emailInput = document.getElementById('email');
+        var companyInput = document.getElementById('company');
+        var nameError = document.getElementById('nameError');
+        var emailError = document.getElementById('emailError');
+        var attendanceError = document.getElementById('attendanceError');
+        var successMessage = document.getElementById('successMessage');
+
+        // Real-time validation for Full Name
+        fullNameInput.addEventListener('input', function() {
+            var name = fullNameInput.value;
+            if (name.length > 0 && (name.length < 6 || name.length > 100)) {
+                nameError.style.display = 'block';
+            } else {
+                nameError.style.display = 'none';
+            }
+        });
+
+        // Real-time validation for Email
+        emailInput.addEventListener('input', function() {
+            var email = emailInput.value;
+            if (email.length > 0 && !validateEmail(email)) {
+                emailError.style.display = 'block';
+            } else {
+                emailError.style.display = 'none';
+            }
+        });
+
+        // Function to validate email format
+        function validateEmail(email) {
+            var atIndex = email.indexOf('@');
+            var dotIndex = email.lastIndexOf('.');
+            if (atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < email.length - 1) {
+                return true;
+            }
+            return false;
+        }
+
+        // Form submission
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var isValid = true;
+
+            // Validate Full Name
+            var name = fullNameInput.value.trim();
+            if (name.length < 6 || name.length > 100) {
+                nameError.style.display = 'block';
+                isValid = false;
+            } else {
+                nameError.style.display = 'none';
+            }
+
+            // Validate Email
+            var email = emailInput.value.trim();
+            if (!validateEmail(email)) {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            // Validate Attendance Type
+            var attendanceType = '';
+            var virtualRadio = document.getElementById('virtual');
+            var inPersonRadio = document.getElementById('inPerson');
+            
+            if (virtualRadio.checked) {
+                attendanceType = 'Virtual';
+            } else if (inPersonRadio.checked) {
+                attendanceType = 'In-Person';
+            }
+
+            if (attendanceType === '') {
+                attendanceError.style.display = 'block';
+                isValid = false;
+            } else {
+                attendanceError.style.display = 'none';
+            }
+
+            // If all validations pass
+            if (isValid) {
+                // Create registration object
+                var registration = {
+                    name: name,
+                    email: email,
+                    company: companyInput.value.trim(),
+                    attendanceType: attendanceType
+                };
+
+                // Add to registrations array
+                registrations.push(registration);
+
+                // Show success message
+                successMessage.style.display = 'block';
+
+                // Reset form
+                form.reset();
+
+                // Hide success message after 3 seconds
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 3000);
+
+                // Update analytics if visible
+                if (document.getElementById('analyticsPanel').style.display === 'block') {
+                    updateAnalytics();
+                }
+            }
+        });
+
+        // Toggle Analytics Panel
+        function toggleAnalytics() {
+            var panel = document.getElementById('analyticsPanel');
+            var btn = document.getElementById('analyticsBtn');
+
+            if (panel.style.display === 'none' || panel.style.display === '') {
+                panel.style.display = 'block';
+                btn.textContent = 'Hide Event Analytics';
+                updateAnalytics();
+            } else {
+                panel.style.display = 'none';
+                btn.textContent = 'Show Event Analytics';
+            }
+        }
+
+        // Update Analytics
+        function updateAnalytics() {
+            var total = registrations.length;
+            var virtualCount = 0;
+            var inPersonCount = 0;
+
+            for (var i = 0; i < registrations.length; i++) {
+                if (registrations[i].attendanceType === 'Virtual') {
+                    virtualCount++;
+                } else if (registrations[i].attendanceType === 'In-Person') {
+                    inPersonCount++;
+                }
+            }
+
+            document.getElementById('totalRegistrants').textContent = total;
+            document.getElementById('virtualCount').textContent = virtualCount;
+            document.getElementById('inPersonCount').textContent = inPersonCount;
+        }
+    </script>
+</body>
+</html>
